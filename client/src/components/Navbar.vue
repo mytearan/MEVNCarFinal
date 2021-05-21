@@ -15,26 +15,41 @@
             <!--</a>-->
             </router-link>
       </li>
-      <li class="nav-item">
-        <!--<a class="nav-link" href="#">Link</a>-->
-        <router-link to="/about" class="nav-link">About</router-link>
+      <li class="nav-item" v-if="user.roll == 'Admin'">
+        
+        <router-link to="/addcar" class="nav-link">add car</router-link>
       </li>
+      <li class="nav-item" v-if="user.roll == 'Admin'">
+        
+        <router-link to="/cars" class="nav-link">Car Inventory</router-link>
+      </li> 
+
+      <li class="nav-item" v-if="user.roll == 'Basic'">
+        
+        <router-link to="/rentals" class="nav-link">Car Rentals</router-link>
+      </li> 
+      <li class="nav-item" v-if="user.roll == 'Basic'">
+        
+        <router-link to="/addrental" class="nav-link">Car Add Rental</router-link>
+      </li> 
+
       <li class="nav-item" v-if="!isLoggedIn">
-        <!--<a class="nav-link" href="#">Link</a>-->
+        
         <router-link to="/login" class="nav-link">Login</router-link>
       </li>
       <li class="nav-item" v-if="!isLoggedIn">
-        <!--<a class="nav-link" href="#">Link</a>-->
+        
         <router-link to="/register" class="nav-link">Register</router-link>
       </li>
       <li class="nav-item" v-if="isLoggedIn">
-        <!--<a class="nav-link" href="#">Link</a>-->
+        
         <router-link to="/profile" class="nav-link">Profile</router-link>
       </li>
       <li class="nav-item" v-if="isLoggedIn">
-        <!--<a class="nav-link" href="#">Link</a>-->
+        
         <a to="/logout" class="nav-link" @click.prevent="logoutUser">Logout</a>
       </li>
+      
       <!--<li class="nav-item dropdown">
         <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
           Dropdown
@@ -63,13 +78,19 @@ import { mapGetters, mapActions } from "vuex";
 
 export default {
 computed:{
-  ...mapGetters(["isLoggedIn"])
+  ...mapGetters(["isLoggedIn"]),
+  ...mapGetters(["user"])
 },
 methods: {
   ...mapActions(['logout']),
   logoutUser(){
     this.logout();
+  },
+  ...mapActions(["getprofile"]),
+  getProfile(){
+    this.getprofile();
   }
+
 }
 }
 </script>

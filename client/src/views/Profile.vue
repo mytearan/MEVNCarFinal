@@ -8,6 +8,7 @@
           <li class="list-group-item">Email: {{ user.email }}</li>
           <li class="list-group-item">Username: {{ user.username }}</li>
           <li class="list-group-item">Name: {{ user.name }}</li>
+          <li class="list-group-item">Role: {{ user.roll }}</li>
         </ul>
       </div>
   </div>

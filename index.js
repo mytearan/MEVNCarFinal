@@ -12,11 +12,13 @@ app.use(bodyParser.urlencoded({
     extended: false
 }));
 app.use(bodyParser.json());
+app.use(express.json())
 app.use(cors());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(passport.initialize());
 require ('./config/passport')(passport);
 //
+
 const db = require ('./config/keys').mongoURI;
 mongoose.connect(db, {
     useNewUrlParser:true 
@@ -33,9 +35,11 @@ mongoose.connect(db, {
 //Bring in the users route
 const users = require('./routes/api/users');
 app.use('/api/users', users);
+const posts = require('./routes/api/posts');
+app.use('/api/posts', posts);
 
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'public/index.html'));
+ app.get('*', (req, res) => {
+     res.sendFile(path.join(__dirname, 'public/index.html'));
 })
 
 const PORT = process.env.PORT || 5000;

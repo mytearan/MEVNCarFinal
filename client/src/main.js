@@ -15,5 +15,5 @@ app.mount('#app')
 const token = localStorage.getItem("token");
 //If there is any token then we will simply append default axios authorization headers
 if(token){
-    this.axios.defaults.headers.common['Authorization'] = token;
+    axios.defaults.headers.common['Authorization'] = token;
 }

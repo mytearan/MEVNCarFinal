@@ -67,6 +67,21 @@
                           v-model="confirm_password"
                           >
                       </div>
+                     <div class="form-group">
+                          <label for="roll">Role</label>
+                          <select 
+                          type="password" 
+                          class="form-control" 
+                          placeholder="Confirm Password" 
+                          name="roll" 
+                          id="roll" 
+                          v-model="roll"
+                          >
+                          <option disabled value="">Please select one</option>
+                          <option>Admin</option>
+                          <option>Basic</option>
+                          </select>
+                      </div>
                       <button class="btn btn-primary" style="margin:5px">Register</button>
                       &nbsp;&nbsp;&nbsp;&nbsp;
                       <router-link to="/login" class="card-link">Already have an account</router-link>
@@ -87,7 +102,8 @@ export default {
           password: "",
           confirm_password: "",
           name: "",
-          email: ""
+          email: "",
+          roll: ""
       };
   },
   methods:{
@@ -98,7 +114,8 @@ export default {
               password: this.password,
               confirm_password: this.confirm_password,
               email: this.email,
-              name: this.name
+              name: this.name,
+              roll: this.roll
           }
           this.register(user).then(res => {
               if(res.data.success){
@@ -106,7 +123,9 @@ export default {
               }
           });
       }
-  }
+  },
+  name: 'Profile',
+  components: {}
 };
 </script>
 

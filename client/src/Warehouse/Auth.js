@@ -5,7 +5,8 @@ const state = {
 token: localStorage.getItem('token') || '',
 user: {},
 status: '',
-error: null
+error: null,
+roll: null
 };
 
 const getters = {
@@ -19,7 +20,8 @@ const getters = {
 isLoggedIn: state => !!state.token,
 authState: state => state.status,
 user: state => state.user,
-error: state => state.error
+error: state => state.error,
+roll: state => state.roll
 };
 
 const actions = {
@@ -33,6 +35,7 @@ async login({ commit }, user){
             const user = res.data.user;
             //store the token into the localstorage
             localStorage.setItem('token', token);
+
             //set the acios defaults
             axios.defaults.headers.common['Authorization'] = token;
             commit('auth_success', token, user);
@@ -66,6 +69,7 @@ async getProfile({commit}){
     commit('user_profile', res.data.user)
     return res;
 },
+
 //logout the user
 async logout({
     commit
@@ -115,7 +119,7 @@ profile_request(state){
 },
 user_profile(state, user){
     state.user = user
-},
+}
 
 };
 
